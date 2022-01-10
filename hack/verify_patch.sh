@@ -8,5 +8,5 @@ source "kit/helper.sh"
 cd "${ROOT}"
 
 RELEASES=$(helper::config::list_releases)
-
+echo ${RELEASES}
 make ${RELEASES}

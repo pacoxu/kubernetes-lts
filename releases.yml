@@ -6,300 +6,51 @@ releases:
     must: true
     patches:
       - CVE-2021-25741.1.18
-      - nokmem.1.19
+      - nokmem.1.18
       - fix-missing-env-91500.1.18
-      - 0001-pkg-kubelet-kubelet_pods_test.go
-
+      - add-log.1.18
   - name: v1.18.20-ci
     base_release: v1.18.20
     patches:
-      - fix-run-docker.1.19
-      - no-delete-images.1.19
-      - fix-etcd-put-key.1.19
+      - fix-run-docker.1.18
+      - no-delete-images.1.18
+      - fix-etcd-put-key.1.18
     test_failures_tolerated:
       - k8s.io/kubernetes/pkg/kubelet/volumemanager/reconciler
       - k8s.io/kubernetes/pkg/volume/csi
       - k8s.io/kubernetes/vendor/k8s.io/apiserver/pkg/server
     test_integration_failures_tolerated: []
 
-patches:
-  # CVSS Score >= 8.0
 
-  # CVSS Score 8.8, < k8s1.19, https://www.cvedetails.com/cve/CVE-2021-25741/
-  - name: CVE-2021-25741
+patches:
+  - name: fix-run-docker.1.18
     patch:
-      - https://github.com/kubernetes/kubernetes/pull/104340.patch
+      - patches/fix-run-docker.1.18.patch
+
+  - name: no-delete-images.1.18
+    patch:
+      - patches/no-delete-images.1.18.patch
+
+
+
   - name: CVE-2021-25741.1.18
     patch:
       - patches/CVE-2021-25741.1.18.patch # Conflict resolution
 
-  # CVSS Score >= 7.0
-
-  # CVSS Score 7.5, < k8s1.18, https://www.cvedetails.com/cve/CVE-2021-3121/
-  - name: CVE-2021-3121
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/101327.patch
-
-  # CVSS Score >= 6.0
-
-  # CVSS Score 6.0, < k8s1.16, https://www.cvedetails.com/cve/CVE-2020-8559/
-  - name: CVE-2020-8559
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/92971.patch
-  - name: CVE-2020-8559.1.13
-    patch:
-      - patches/CVE-2020-8559.1.13.patch # Remove test
-  - name: CVE-2020-8559.1.12
-    patch:
-      - patches/CVE-2020-8559.1.12.patch # Remove test
-
-  # CVSS Score 6.4, < k8s1.12, https://www.cvedetails.com/cve/CVE-2019-11248/
-  - name: CVE-2019-11248
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/79184.patch
-  - name: CVE-2019-11248.1.11
-    patch:
-      - patches/CVE-2019-11248.1.11.patch # Conflict resolution
-
-  # CVSS Score 6.5, < k8s1.13, https://www.cvedetails.com/cve/CVE-2019-11247/
-  - name: CVE-2019-11247
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/80852.patch
-  - name: CVE-2019-11247.1.11
-    patch:
-      - patches/CVE-2019-11247.1.11.patch # Remove BUILD file
-
-  # CVSS Score >= 5.0
-
-  # CVSS Score 5.8, < k8s1.16, https://www.cvedetails.com/cve/CVE-2020-8558/
-  - name: CVE-2020-8558
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/92040.patch
-  - name: CVE-2020-8558.1.12
-    patch:
-      - patches/CVE-2020-8558.1.12.patch # Conflict resolution
-
-  # CVSS Score 5.8, < k8s1.11, https://www.cvedetails.com/cve/CVE-2019-1002101/
-  - name: CVE-2019-1002101
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/75043.patch
-  - name: CVE-2019-1002101.1.10
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/64573.patch
-      - patches/CVE-2019-1002101.1.10.patch # Conflict resolution
-
-  # CVSS Score 5.0, < k8s1.13, https://www.cvedetails.com/cve/CVE-2019-11253/
-  # TODO
-  - name: CVE-2019-11253
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/83436.patch
-
-  # CVSS Score 5.0, < k8s1.17, https://www.cvedetails.com/cve/CVE-2019-11252/
-  # TODO Change is too large
-  - name: CVE-2019-11252
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/88684.patch
-
-  # CVSS Score 5.8, < k8s1.13, https://www.cvedetails.com/cve/CVE-2019-11249/
-  - name: CVE-2019-11249
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/80871.patch
-  - name: CVE-2019-11249.1.12
-    patch:
-      - patches/CVE-2019-11249.1.12.patch # Conflict resolution
-  - name: CVE-2019-11249.1.10
-    patch:
-      - patches/CVE-2019-11249.1.10.patch # Conflict resolution
-
-  # CVSS Score 5.0, < k8s1.11, https://www.cvedetails.com/cve/CVE-2019-9946/
-  # bump CNI version to 0.7.5, no need to fix
-  - name: CVE-2019-9946
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/75464.patch
-
-  # CVSS Score >= 4.0
-
-  # CVSS Score 4.0, < k8s1.15, https://www.cvedetails.com/cve/CVE-2020-8552/
-  - name: CVE-2020-8552
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/87682.patch
-  - name: CVE-2020-8552.1.14
-    patch:
-      - patches/CVE-2020-8552.1.14.patch # Conflict resolution
-  - name: CVE-2020-8552.1.13
-    patch:
-      - patches/CVE-2020-8552.1.13.patch # Conflict resolution
-  - name: CVE-2020-8552.1.11
-    patch:
-      - patches/CVE-2020-8552.1.11.patch # Conflict resolution
-
-  # CVSS Score 4.0, < k8s1.11, https://www.cvedetails.com/cve/CVE-2019-1002100/
-  # TODO
-  - name: CVE-2019-1002100
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/74106.patch
-  - name: CVE-2019-1002100.1.10.patch
-    patch:
-      - patches/CVE-2019-1002100.1.10.patch
-
-  # CVSS Score 4.0, < k8s1.15, https://www.cvedetails.com/cve/CVE-2019-11254/
-  # TODO
-  - name: CVE-2019-11254
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/87640.patch
-
-  # CVSS Score 4.3, < k8s1.13, https://www.cvedetails.com/cve/CVE-2019-11251/
-  - name: CVE-2019-11251
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/82503.patch
-  - name: CVE-2019-11251.1.10
-    patch:
-      - patches/CVE-2019-11251.1.10.patch # Conflict resolution
-
-  # CVSS Score 4.3, < k8s1.12, https://www.cvedetails.com/cve/CVE-2019-11246/
-  - name: CVE-2019-11246
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/77262.patch
-  - name: CVE-2019-11246.1.11
-    patch:
-      - patches/CVE-2019-11246.1.11.patch # Conflict resolution
-  - name: CVE-2019-11246.1.10
-    patch:
-      - patches/CVE-2019-11246.1.10.patch # Conflict resolution
-
-  # CVSS Score 4.6, < k8s1.13, https://www.cvedetails.com/cve/CVE-2019-11245/
-  - name: CVE-2019-11245
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/78320.patch
-
-  # CVSS Score 4.3, <= k8s1.13, https://www.cvedetails.com/cve/CVE-2019-11243/
-  - name: CVE-2019-11243
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/75771.patch
-
-  # CVSS Score >= 3.0
-
-  # CVSS Score 3.3, < k8s1.15, https://www.cvedetails.com/cve/CVE-2020-8551/
-  # TODO
-  - name: CVE-2020-8551
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/87940.patch
-
-  # CVSS Score 3.5, < k8s1.15, https://www.cvedetails.com/cve/CVE-2020-8555/
-  # TODO
-  - name: CVE-2020-8555
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/89839.patch
-  - name: CVE-2020-8555.1.14
-    patch:
-      - patches/CVE-2020-8555.1.14.patch # Conflict resolution
-
-  # CVSS Score 3.5, < k8s1.16, https://www.cvedetails.com/cve/CVE-2019-11250/
-  # TODO
-  - name: CVE-2019-11250
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/81330.patch
-
-  # CVSS Score >= 2.0
-
-  # CVSS Score 2.1, < k8s1.16, https://www.cvedetails.com/cve/CVE-2020-8567/
-  # TODO
-  - name: CVE-2020-8567
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/92924.patch
-
-  # CVSS Score 2.1, < k8s1.17, https://www.cvedetails.com/cve/CVE-2020-8566/
-  # TODO
-  - name: CVE-2020-8566
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/95330.patch
-
-  # CVSS Score 2.1, < k8s1.17, https://www.cvedetails.com/cve/CVE-2020-8565/
-  # TODO
-  - name: CVE-2020-8565
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/95355.patch
-
-  # CVSS Score 2.1, < k8s1.17, https://www.cvedetails.com/cve/CVE-2020-8564/
-  # TODO
-  - name: CVE-2020-8564
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/95348.patch
-
-  # CVSS Score 2.1, < k8s1.17, https://www.cvedetails.com/cve/CVE-2020-8563/
-  # TODO
-  - name: CVE-2020-8563
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/95241.patch
-
-  # CVSS Score >= 1.0
-
-  - name: TODO
-    patch: []
-
-  # Bug
-
-  - name: nokmem.1.19 # < k8s1.22
+  - name: nokmem.1.18 # < k8s1.22
     patch:
       # Hard-coded disabling kmem to prevent seemingly disabling actually enabling
       # TODO: upgrade runc instead of this
-      - patches/nokmem.1.19.patch
-  - name: nokmem.1.13
-    patch:
-      - patches/nokmem.1.13.patch
+      - patches/nokmem.1.18.patch
 
-  # CI
-
-  - name: fix-run-docker.1.19
+  - name: fix-etcd-put-key.1.18
     patch:
-      - patches/fix-run-docker.1.19.patch
-
-  - name: release-images-script
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/68096.patch
-
-  - name: no-delete-images.1.19
-    patch:
-      - patches/no-delete-images.1.19.patch
-  - name: no-delete-images.1.15
-    patch:
-      - patches/no-delete-images.1.15.patch
-  - name: no-delete-images.1.12
-    patch:
-      - patches/no-delete-images.1.12.patch
-  - name: no-delete-images.1.10
-    patch:
-      - patches/no-delete-images.1.10.patch
-
-  - name: fix-image-name
-    patch:
-      - https://github.com/kubernetes/kubernetes/pull/80047.patch
-  - name: fix-image-name.1.12
-    patch:
-      - patches/fix-image-name.1.12.patch
-
-  - name: fix-test.1.16
-    patch:
-      - patches/fix-test.1.16.patch
-
-  # Pick commit from https://github.com/kubernetes/kubernetes/pull/84329.patch
-  - name: fix-etcd-health.1.16
-    patch:
-      - patches/fix-etcd-health.1.16.patch
-  - name: fix-etcd-health.1.11
-    patch:
-      - patches/fix-etcd-health.1.11.patch
-
-  - name: fix-etcd-put-key.1.19
-    patch:
-      - patches/fix-etcd-put-key.1.19.patch
-  - name: fix-etcd-put-key.1.11
-    patch:
-      - patches/fix-etcd-put-key.1.11.patch
+      - patches/fix-etcd-put-key.1.18.patch
 
   - name: fix-missing-env-91500.1.18
     patch:
       - patches/fix-missing-env-91500.1.18.patch
-  - name: 0001-pkg-kubelet-kubelet_pods_test.go
+
+  - name: add-log.1.18
     patch:
-      - patches/0001-pkg-kubelet-kubelet_pods_test.go.patch
+      - patches/add-log.1.18.patch
