@@ -4,14 +4,22 @@ Date: Fri, 7 Jan 2022 17:20:46 +0800
 Subject: [PATCH] pkg/kubelet/kubelet_pods_test.go
 
 ---
- pkg/kubelet/kubelet_pods_test.go | 1 +
- 1 file changed, 1 insertion(+)
+ pkg/kubelet/kubelet_pods_test.go | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/pkg/kubelet/kubelet_pods_test.go b/pkg/kubelet/kubelet_pods_test.go
-index 2fac3ba3f76..190a9f6af41 100644
+index 2fac3ba3..4ab89dca 100644
 --- a/pkg/kubelet/kubelet_pods_test.go
 +++ b/pkg/kubelet/kubelet_pods_test.go
-@@ -1689,6 +1689,7 @@ func TestMakeEnvironmentVariables(t *testing.T) {
+@@ -1640,6 +1640,7 @@ func TestMakeEnvironmentVariables(t *testing.T) {
+ 			kl.masterServiceNamespace = tc.masterServiceNs
+ 			if tc.nilLister {
+ 				kl.serviceLister = nil
++				kl.serviceHasSynced = func() bool { return false }
+ 			} else if tc.unsyncedServices {
+ 				kl.serviceLister = testServiceLister{}
+ 				kl.serviceHasSynced = func() bool { return false }
+@@ -1689,6 +1690,7 @@ func TestMakeEnvironmentVariables(t *testing.T) {
  				testPod.Annotations[kubetypes.ConfigSourceAnnotationKey] = "file"
  			}
  
@@ -19,3 +27,4 @@ index 2fac3ba3f76..190a9f6af41 100644
  			result, err := kl.makeEnvironmentVariables(testPod, tc.container, podIP, podIPs)
  			select {
  			case e := <-fakeRecorder.Events:
+
