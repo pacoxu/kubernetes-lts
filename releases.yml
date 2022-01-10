@@ -302,5 +302,4 @@ patches:
       - patches/fix-missing-env-91500.1.18.patch
   - name: 0001-pkg-kubelet-kubelet_pods_test.go
     patch:
-      - patches/0001-pkg-kubelet-kubelet_pods_test.go.patch      
-      
+      - patches/0001-pkg-kubelet-kubelet_pods_test.go.patch
