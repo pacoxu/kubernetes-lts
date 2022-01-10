@@ -8,7 +8,7 @@ Subject: [PATCH] pkg/kubelet/kubelet_pods_test.go
  1 file changed, 2 insertions(+)
 
 diff --git a/pkg/kubelet/kubelet_pods_test.go b/pkg/kubelet/kubelet_pods_test.go
-index 2fac3ba3..4ab89dca 100644
+index 2fac3ba3f76..4ab89dca1ec 100644
 --- a/pkg/kubelet/kubelet_pods_test.go
 +++ b/pkg/kubelet/kubelet_pods_test.go
 @@ -1640,6 +1640,7 @@ func TestMakeEnvironmentVariables(t *testing.T) {
