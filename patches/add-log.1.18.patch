@@ -19,6 +19,3 @@ index 2fac3ba3f76..190a9f6af41 100644
  			result, err := kl.makeEnvironmentVariables(testPod, tc.container, podIP, podIPs)
  			select {
  			case e := <-fakeRecorder.Events:
--- 
-2.33.1
-
