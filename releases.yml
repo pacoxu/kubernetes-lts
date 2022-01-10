@@ -11,10 +11,10 @@ releases:
     base_release: v1.18.20-ci
     must: true
     patches:
-      - 0001-pkg-kubelet-kubelet_pods_test.go
       - fix-missing-env-91500.1.18
       - CVE-2021-25741.1.18
       - nokmem.1.19
+      - 0001-pkg-kubelet-kubelet_pods_test.go
 
   - name: v1.17.17-lts.1
     base_release: v1.17.17-ci
