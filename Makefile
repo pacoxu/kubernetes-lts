@@ -100,6 +100,10 @@ test-cmd:
 test-integration:
 	./hack/test_integration.sh
 
+.PHONY: e2e
+local-up-klts:
+	./hack/local-up-klts.sh
+
 .PHONY: test-e2e
 test-e2e:
 	./hack/test_e2e.sh
