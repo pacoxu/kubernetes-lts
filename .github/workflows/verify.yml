@@ -126,12 +126,19 @@ jobs:
       SKIP: \[Slow\]|\[Disruptive\]|\[Flaky\]|\[Feature:.+\]|PodSecurityPolicy|LoadBalancer|load.balancer|Simple.pod.should.support.exec.through.an.HTTP.proxy|subPath.should.support.existing|NFS|nfs|inline.execution.and.attach|should.be.rejected.when.no.endpoints.exist
       PARALLEL: "true"
     steps:
+      - uses: docker-practice/actions-setup-docker@master
       - name: checkout code
         uses: actions/checkout@v2
       - name: install Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.17.x
+      - name: Install dependent
+        run: |
+          make dependent
+      - name: Checkout to v1.18.20-lts.1
+        run: |
+          make v1.18.20-lts.1
       - name: run e2e test 
         run: make local-up-klts
       # - name: upload logs to artifacts
