@@ -118,7 +118,7 @@ jobs:
 
   e2e:
     name: run basic e2e test
-    needs: Test-v1-18-20-lts-1
+    needs: Patch
     runs-on: ubuntu-latest
     env:
       ARTIFACTS_PATH: ${{ github.workspace }}/e2e-logs/
