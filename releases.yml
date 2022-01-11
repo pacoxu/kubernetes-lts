@@ -45,10 +45,3 @@ patches:
     patch:
       - patches/fix-etcd-put-key.1.18.patch
 
-  - name: fix-missing-env-91500.1.18
-    patch:
-      - patches/fix-missing-env-91500.1.18.patch
-
-  - name: add-log.1.18
-    patch:
-      - patches/add-log.1.18.patch
