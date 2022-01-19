@@ -13,6 +13,7 @@ releases:
       - fix-run-docker.1.18
       - no-delete-images.1.18
       - fix-etcd-put-key.1.18
+      - e2e-fix.1.18
     test_failures_tolerated:
       - k8s.io/kubernetes/pkg/kubelet/volumemanager/reconciler
       - k8s.io/kubernetes/pkg/volume/csi
@@ -45,3 +46,7 @@ patches:
     patch:
       - patches/fix-etcd-put-key.1.18.patch
 
+  # https://github.com/kubernetes/kubernetes/pull/89863.patch
+  - name: e2e-fix.1.18
+    patch:
+      - patches/fix-e2e.1.18.patch

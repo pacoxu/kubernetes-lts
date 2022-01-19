@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: pacoxu <paco.xu@daocloud.io>
+Date: Wed, 19 Jan 2022 17:42:05 +0800
+Subject: [PATCH] e2e TCP CLOSE test wait until pod is ready
+
+---
+ test/e2e/network/kube_proxy.go | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/test/e2e/network/kube_proxy.go b/test/e2e/network/kube_proxy.go
+index 635b4198193..2d5c2e7d0c5 100644
+--- a/test/e2e/network/kube_proxy.go
++++ b/test/e2e/network/kube_proxy.go
+@@ -155,13 +155,18 @@ var _ = SIGDescribe("Network", func() {
+ 			serverNodeInfo.nodeIP,
+ 			kubeProxyE2eImage))
+ 		fr.PodClient().CreateSync(serverPodSpec)
++		defer fr.PodClient().DeleteSync(serverPodSpec.Name, metav1.DeleteOptions{}, framework.DefaultPodDeletionTimeout)
+ 
++		if readyErr := e2epod.WaitForPodsReady(fr.ClientSet, fr.Namespace.Name, serverPodSpec.Name, 0); readyErr != nil {
++			framework.Failf("error waiting for server pod %s to be ready: %w", serverPodSpec.Name, readyErr)
++		}
+ 		ginkgo.By(fmt.Sprintf(
+ 			"Launching a client daemon on node %v (node ip: %v, image: %v)",
+ 			clientNodeInfo.name,
+ 			clientNodeInfo.nodeIP,
+ 			kubeProxyE2eImage))
+ 		fr.PodClient().CreateSync(clientPodSpec)
++		defer fr.PodClient().DeleteSync(clientPodSpec.Name, metav1.DeleteOptions{}, framework.DefaultPodDeletionTimeout)
+ 
+ 		ginkgo.By("Make client connect")
+ 
