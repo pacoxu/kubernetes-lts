@@ -2,7 +2,8 @@
 Below lists the status of each release image and package and you can click any to learn the detailed logs.
 | |Images|Packages|
 |-|-|-|
-|v1.19.16|[![v1.19.16-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Images/v1.19.16-lts.1?label=v1.19.16-lts.1%20Releases%20Images)](https://klts.io/zh/docs/releases/v1.19.16/v1.19.16-lts.1/)|[![v1.19.16-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Packages/v1.19.16-lts.1?label=v1.19.16-lts.1%20Releases%20Packages)](https://klts.io/zh/docs/releases/v1.19.16/v1.19.16-lts.1/)|
+|v1.19.16|[![v1.19.16-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Images/v1.19.16-lts.1?label=v1.19.16-lts.1%20Releases%20Images)](https://klts.io/zh/docs/releases/v1.19.16/v1.19.16-lts.1/)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpacoxu%2Fkubernetes-lts.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpacoxu%2Fkubernetes-lts?ref=badge_shield)
+|[![v1.19.16-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Packages/v1.19.16-lts.1?label=v1.19.16-lts.1%20Releases%20Packages)](https://klts.io/zh/docs/releases/v1.19.16/v1.19.16-lts.1/)|
 |v1.18.20|[![v1.18.20-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Images/v1.18.20-lts.1?label=v1.18.20-lts.1%20Releases%20Images)](https://klts.io/zh/docs/releases/v1.18.20/v1.18.20-lts.1/)|[![v1.18.20-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Packages/v1.18.20-lts.1?label=v1.18.20-lts.1%20Releases%20Packages)](https://klts.io/zh/docs/releases/v1.18.20/v1.18.20-lts.1/)|
 |v1.17.17|[![v1.17.17-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Images/v1.17.17-lts.1?label=v1.17.17-lts.1%20Releases%20Images)](https://klts.io/zh/docs/releases/v1.17.17/v1.17.17-lts.1/)|[![v1.17.17-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Packages/v1.17.17-lts.1?label=v1.17.17-lts.1%20Releases%20Packages)](https://klts.io/zh/docs/releases/v1.17.17/v1.17.17-lts.1/)|
 |v1.16.15|[![v1.16.15-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Images/v1.16.15-lts.1?label=v1.16.15-lts.1%20Releases%20Images)](https://klts.io/zh/docs/releases/v1.16.15/v1.16.15-lts.1/)|[![v1.16.15-lts.1](https://img.shields.io/github/workflow/status/klts-io/kubernetes-lts/Releases%20Packages/v1.16.15-lts.1?label=v1.16.15-lts.1%20Releases%20Packages)](https://klts.io/zh/docs/releases/v1.16.15/v1.16.15-lts.1/)|
@@ -54,3 +55,7 @@ make build-binaries
 ```
 ### Official patch release
 For details about Kubernetes patch releases, see [patch release](https://kubernetes.io/releases/patch-releases/).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpacoxu%2Fkubernetes-lts.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpacoxu%2Fkubernetes-lts?ref=badge_large)
